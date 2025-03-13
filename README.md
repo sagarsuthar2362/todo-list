@@ -18,9 +18,6 @@ This is a simple and responsive ToDo app built with React and Tailwind CSS. It a
 - React Icons (for task actions like check, delete)
 - Local Storage for persistence
 
-## Screenshots
-
-![ToDo App Screenshot](path/to/screenshot.png)
 
 ## Installation
 
@@ -31,3 +28,9 @@ To run the ToDo app locally, follow the instructions below:
 ```bash
 git clone https://github.com/yourusername/todo-app.git
 cd todo-app
+
+```bash
+npm install
+
+```bash
+npm start

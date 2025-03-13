@@ -13,14 +13,13 @@ const ToDo = () => {
     e.preventDefault();
     let taskData = e.target.taskInput.value.trim();
     let priority = e.target.priority.value;
-    let dueDate = e.target.dueDate.value;
 
     if (taskData === "") {
       alert("Task cannot be empty ");
     } else {
       const newTasks = [
         ...task,
-        { text: taskData, completed: false, priority, dueDate },
+        { text: taskData, completed: false, priority },
       ];
       setTask(newTasks);
       localStorage.setItem("tasks", JSON.stringify(newTasks));
@@ -61,15 +60,15 @@ const ToDo = () => {
   });
 
   return (
-    <div className="w-full min-h-screen  mx-auto p-6 bg-gradient-to-br from-zinc-800 to-zinc-900 rounded-xl shadow-lg">
-      <div className="md:w-8/12 mx-auto">
-        <h1 className="text-3xl font-semibold text-center text-white mb-6">
+    <div className="w-full min-h-screen mx-auto p-6 bg-gradient-to-br from-zinc-800 to-zinc-900 rounded-xl shadow-lg">
+      <div className="w-full sm:w-10/12 md:w-8/12 lg:w-6/12 mx-auto">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-semibold text-center text-white mb-6">
           ToDo App
         </h1>
 
         {/* Form to Add Tasks */}
         <form className="space-y-4" onSubmit={handleSubmit}>
-          <div className="flex items-center space-x-3">
+          <div className="flex flex-col sm:flex-row items-center space-y-4 sm:space-y-0 sm:space-x-3">
             <input
               type="text"
               placeholder="Add a new task"
@@ -85,15 +84,9 @@ const ToDo = () => {
               <option value="High">High</option>
             </select>
 
-            <input
-              type="date"
-              name="dueDate"
-              className="bg-gray-800 text-white rounded-lg p-4"
-            />
-
             <button
               type="submit"
-              className="bg-indigo-500 py-3 px-6 rounded-lg text-white font-semibold hover:bg-indigo-600 transition w-fit cursor-pointer "
+              className="bg-indigo-500 py-3 px-6 rounded-lg text-white font-semibold hover:bg-indigo-600 transition w-fit cursor-pointer"
             >
               Add Task
             </button>
@@ -103,7 +96,7 @@ const ToDo = () => {
         {/* sort feature */}
         <select
           onChange={(e) => setFilter(e.target.value)}
-          className="bg-gray-800 text-white rounded-lg py-2 px-4 my-4"
+          className="bg-gray-800 text-white rounded-lg py-2 px-4 my-4 w-full sm:w-auto"
         >
           <option value="All">All</option>
           <option value="Completed">Completed</option>
@@ -123,14 +116,8 @@ const ToDo = () => {
             filteredTasks.map((taskItem, index) => (
               <div
                 key={index}
-                className={`flex items-center justify-between p-4 bg-gray-800 rounded-lg shadow-md transition-all transform border ${
+                className={`flex items-center justify-between p-4 bg-gray-800 rounded-lg shadow-md transition-all transform ${
                   taskItem.completed ? "bg-green-600" : ""
-                } ${
-                  taskItem.priority === "High"
-                    ? "border-red-500"
-                    : taskItem.priority === "Medium"
-                    ? "border-yellow-500"
-                    : "border-green-500"
                 }`}
               >
                 <div
@@ -151,8 +138,18 @@ const ToDo = () => {
                   </p>
                 </div>
 
-                {/* due date */}
-                <span>{taskItem.dueDate}</span>
+                {/* Priority Display */}
+                <span
+                  className={`bg-blue-300 px-5 py-1 rounded-2xl ${
+                    taskItem.priority === "High"
+                      ? "bg-red-500"
+                      : taskItem.priority === "Medium"
+                      ? "bg-yellow-500"
+                      : "bg-green-500"
+                  }`}
+                >
+                  {taskItem.priority}
+                </span>
 
                 <button
                   onClick={() => handleDelete(index)}

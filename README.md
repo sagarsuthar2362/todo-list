@@ -23,14 +23,13 @@ This is a simple and responsive ToDo app built with React and Tailwind CSS. It a
 
 To run the ToDo app locally, follow the instructions below:
 
-### 1. Clone the repository
+1. **Install Dependencies**:
+   ```bash
+   npm install
+   
+2. **Start the Development Server**:
+   ```bash
+   npm run dev
 
-```bash
-git clone https://github.com/yourusername/todo-app.git
-cd todo-app
-
-```bash
-npm install
-
-```bash
-npm start
+3. **Open the App**:
+   visit http://localhost:5173
